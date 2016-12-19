@@ -13,7 +13,10 @@ outputs:
 - name: build
 
 run:
-  path: mruby-compiler
+  path: sh
   args:
-    - $(pwd)/example
-    - $(pwd)
+    - -exc
+    - |
+      pwd
+      ls -al
+      mruby-compiler $(pwd)/example $(pwd)
