@@ -10,8 +10,6 @@ inputs:
 - name: build
 
 run:
-  path: sh
+  path: ./build/host/bin/example
   args:
-    - -exc
-    - |
-      ./build/host/bin/example "puts true"
+    - \"puts true\"
