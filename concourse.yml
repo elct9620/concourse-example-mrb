@@ -1,0 +1,27 @@
+resources:
+- name: example
+  type: git
+  source:
+    uri: https://github.com/elct9620/concourse-example-mrb.git
+- name: gh-release
+  type: github-release
+  source:
+    user: elct9620
+    repository: concourse-example-mrb
+    access_token: {{github-token}}
+
+jobs:
+  - name: compile-and-release
+    plan:
+      - get: example
+        trigger: true
+      - task: compile
+        file: example/tasks/compile.yml
+      - task: exam
+        file: example/tasks/exam.yml
+      - put: gh-release
+        params:
+          name: build/name
+          tag: build/tag
+          globs:
+            - build/host/bin/example
