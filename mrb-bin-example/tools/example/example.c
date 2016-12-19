@@ -11,7 +11,9 @@ int main(int argc, char** argv) {
 
   if(mrb->exc) {
     mrb_print_error(mrb);
+    return 1;
   }
 
   mrb_close(mrb);
+  return 0;
 }
